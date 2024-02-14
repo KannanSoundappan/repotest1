@@ -1,0 +1,29 @@
+name: workflow1
+
+on: 
+  push:
+    branches:
+      -  'release/**'
+      
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      
+    steps:
+      - uses: actions/checkout@v3
+      - name: Job 1 - Hello Docker
+        run: echo "Hellow Docker"
+        
+      - name: Job 2 - Hello Devops
+        if:
+          contains(github.ref,'release/release2')
+        run: echo "Hellow Devops"
+      
+
+    
+      
+  
